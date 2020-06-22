@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          url: jdbc:sqlite:a.db
+          driver-class-name: org.sqlite.JDBC
+          username: root
+          password: root
+          hikari:
+            minIdle: 5
+            maxPoolSize: 10
+        userDb:
+          url: jdbc:sqlite:a.db
+          driver-class-name: org.sqlite.JDBC
+          username: root
+          password: root
+          hikari:
+            minIdle: 5
+            maxPoolSize: 10
