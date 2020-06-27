@@ -3,18 +3,18 @@ spring:
     dynamic:
       datasource:
         master:
-          url: jdbc:sqlite:a.db
-          driver-class-name: org.sqlite.JDBC
+          url: jdbc:mysql://192.168.2.130:3306/t_user?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.cj.jdbc.Driver
           username: root
-          password: root
+          password: root1
           hikari:
             minIdle: 5
             maxPoolSize: 10
         userDb:
-          url: jdbc:sqlite:a.db
-          driver-class-name: org.sqlite.JDBC
+          url: jdbc:mysql://192.168.2.130:3306/t_user?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.cj.jdbc.Driver
           username: root
-          password: root
+          password: root1
           hikari:
             minIdle: 5
             maxPoolSize: 10

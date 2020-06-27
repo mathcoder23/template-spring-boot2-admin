@@ -20,8 +20,8 @@ import java.util.List;
  */
 @Service
 public class SystemLogBiz extends BaseService<SystemLogMapper, SystemLog> {
-    private final String LOCALHOST = "127.0.0.1";
-    private final String LOCALHOST_GET = "0:0:0:0:0:0:0:1";
+    private static final String LOCALHOST = "127.0.0.1";
+    private static final String LOCALHOST_GET = "0:0:0:0:0:0:0:1";
     public PageInfo<SystemLog> listPage(Integer pageNo,
                                         Integer pageSize,
                                         String startDate,
