@@ -5,6 +5,7 @@ import org.pettyfox.framework.gateway.oauth2.handler.CustomAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -18,8 +19,10 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 public class OAuth2ServerConfig {
@@ -52,16 +55,18 @@ public class OAuth2ServerConfig {
                     .and()
                     .anonymous()
                     .and()
-                    .authorizeRequests()
-//                    .antMatchers("/product/**").access("#oauth2.hasScope('select') and hasRole('ROLE_USER')")
+                    .authorizeRequests() .antMatchers(
+                    "/webjars/**",
+                    "/resources/**",
+                    "/swagger-ui.html",
+                    "/swagger-resources/**",
+                    "/v2/api-docs")
+                    .permitAll()
                     .antMatchers(
-                            "/swagger**",
-                            "/webjars/**",
-                            "/v2/api-docs",
                             "/openApi/produce/device/v1/oauth/login"
                             ,"/openApi/discoveryWebsocketNode/v1/**"
                             ,"/commApi/**").permitAll()
-                    .antMatchers("/**").permitAll();//配置order访问控制，必须认证过后才可以访问
+                    .antMatchers("/**").authenticated();//配置order访问控制，必须认证过后才可以访问
             // @formatter:on
         }
     }
@@ -76,7 +81,7 @@ public class OAuth2ServerConfig {
         @Override
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
             String key = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("123456");
-            String key2 = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("Node...123");
+            String key2 = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("123456");
             //配置两个客户端,一个用于password认证一个用于client认证
             clients.inMemory().withClient("client_1")
                     .resourceIds(DEMO_RESOURCE_ID)

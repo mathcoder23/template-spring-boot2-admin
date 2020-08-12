@@ -1,7 +1,7 @@
 package org.pettyfox.framework.gateway.oauth2;
 
-import org.pettyfox.framework.gateway.oauth2.encoder.MyPasswordEncoderFactories;
 import lombok.extern.slf4j.Slf4j;
+import org.pettyfox.framework.gateway.oauth2.encoder.MyPasswordEncoderFactories;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,8 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * @description Security核心配置
  * @author Zhifeng.Zeng
+ * @description Security核心配置
  */
 @Configuration
 @EnableWebSecurity
@@ -20,16 +20,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+
                 .antMatchers("/")
                 .permitAll()
                 .anyRequest()
@@ -38,8 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable();
     }
+
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return MyPasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
