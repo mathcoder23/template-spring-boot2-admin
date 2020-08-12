@@ -2,8 +2,7 @@ package org.pettyfox.framework.service.user.modules.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.eface.base.comm.type.BaseEnum;
-import com.eface.comm.base.web.dao.BaseEntity;
+import org.pettyfox.base.web.dao.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

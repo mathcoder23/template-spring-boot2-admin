@@ -1,10 +1,11 @@
 package org.pettyfox.framework.service.user.modules.rest;
 
+import io.swagger.annotations.ApiOperation;
 import org.pettyfox.framework.service.user.config.StaticConfig;
 import org.pettyfox.framework.service.user.modules.biz.SystemLogBiz;
 import org.pettyfox.framework.service.user.modules.entity.SystemLog;
-import com.eface.comm.base.web.BaseController;
-import com.eface.comm.base.web.rest.RestObjectResponse;
+import org.pettyfox.base.web.BaseController;
+import org.pettyfox.base.web.rest.RestObjectResponse;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ public class SystemLogRest extends BaseController<SystemLogBiz, SystemLog> {
     private SystemLogBiz systemLogBiz;
     @RequestMapping(value = "list2", method = RequestMethod.GET)
     @ResponseBody
+    @ApiOperation("列表")
     public RestObjectResponse list(
             @RequestParam(value = "startDate",required = false) String startDate,
             @RequestParam(value = "endDate",required = false) String endDate,

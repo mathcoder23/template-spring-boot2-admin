@@ -2,10 +2,10 @@ package org.pettyfox.framework.service.user.modules.biz;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.eface.base.comm.log.ApiLogType;
+import org.pettyfox.base.comm.log.ApiLogType;
 import org.pettyfox.framework.service.user.modules.entity.SystemLog;
 import org.pettyfox.framework.service.user.modules.mapper.SystemLogMapper;
-import com.eface.comm.base.web.dao.BaseService;
+import org.pettyfox.base.web.dao.BaseService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.joda.time.DateTime;

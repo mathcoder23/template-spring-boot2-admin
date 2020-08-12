@@ -19,10 +19,10 @@
         <sub.version>1.0.0</sub.version>
     </properties>
     <modules>
-        <module>rest-web</module>
-        <module>comm/base-dao</module>
-        <module>comm/base-comm</module>
-        <module>comm/base-web</module>
+        <module>gateway-web</module>
+        <module>framework-basic/base-dao</module>
+        <module>framework-basic/base-comm</module>
+        <module>framework-basic/base-web</module>
         <module>comm-service/user-service</module>
     </modules>
     <dependencies>

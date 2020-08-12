@@ -2,8 +2,8 @@ package org.pettyfox.framework.service.user.log;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.ArrayUtils;
-import com.eface.base.comm.log.ApiLog;
-import com.eface.base.comm.log.ApiLogType;
+import org.pettyfox.base.comm.log.ApiLog;
+import org.pettyfox.base.comm.log.ApiLogType;
 import org.pettyfox.framework.service.user.modules.biz.SystemLogBiz;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
@@ -39,7 +39,7 @@ public class ApiLogAspect {
     HttpSession session;
     @Resource
     private SystemLogBiz systemLogBiz;
-    @Pointcut("@annotation(com.eface.base.comm.log.ApiLog)")
+    @Pointcut("@annotation(org.pettyfox.base.comm.log.ApiLog)")
     public void point(){
 
     }

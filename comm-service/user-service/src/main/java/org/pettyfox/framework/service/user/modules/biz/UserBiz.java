@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import org.pettyfox.framework.service.user.modules.entity.User;
 import org.pettyfox.framework.service.user.modules.mapper.UserMapper;
 import org.pettyfox.framework.service.user.modules.rule.PasswordEncoderUtils;
-import com.eface.comm.base.web.dao.BaseService;
+import org.pettyfox.base.web.dao.BaseService;
 import org.pettyfox.framework.service.user.config.StaticConfig;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.scheduling.annotation.Async;
