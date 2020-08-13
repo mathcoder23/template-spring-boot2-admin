@@ -10,7 +10,7 @@
     </parent>
     <artifactId>rest-web</artifactId>
     <version>1.0.0</version>
-    <name>rest-web</name>
+    <name>gateway-web</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

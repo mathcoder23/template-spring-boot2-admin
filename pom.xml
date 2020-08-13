@@ -23,7 +23,7 @@
         <module>framework-basic/base-dao</module>
         <module>framework-basic/base-comm</module>
         <module>framework-basic/base-web</module>
-        <module>comm-service/user-service</module>
+        <module>framework-service/user-service</module>
     </modules>
     <dependencies>
 <!--        <dependency>-->
@@ -39,6 +39,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
