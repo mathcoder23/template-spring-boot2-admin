@@ -22,7 +22,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Service
-public class AuthService implements UserDetailsService {
+public class AuthServiceImpl implements UserDetailsService {
     @Resource
     private UserBiz userBiz;
     @Override

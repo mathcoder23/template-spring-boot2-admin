@@ -1,5 +1,6 @@
 package org.pettyfox.framework.gateway.oauth2;
 
+import org.pettyfox.framework.gateway.oauth2.auth.AuthServiceImpl;
 import org.pettyfox.framework.gateway.oauth2.handler.AuthExceptionEntryPoint;
 import org.pettyfox.framework.gateway.oauth2.handler.CustomAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,8 +77,11 @@ public class OAuth2ServerConfig {
     @EnableAuthorizationServer
     protected static class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
-        @Autowired
+        @Resource
         AuthenticationManager authenticationManager;
+        @Resource
+        AuthServiceImpl authService;
+
         @Override
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
             String key = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("123456");
@@ -111,6 +115,7 @@ public class OAuth2ServerConfig {
         @Override
         public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
             endpoints
+                    .userDetailsService(authService)
                     .tokenStore(new InMemoryTokenStore())
                     .tokenEnhancer(new CustomTokenEnhancer())
                     .authenticationManager(authenticationManager).exceptionTranslator(webResponseExceptionTranslator);
