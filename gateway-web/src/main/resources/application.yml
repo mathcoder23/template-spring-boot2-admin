@@ -5,7 +5,7 @@ server:
     protocol-header: X-Forwarded-Proto
   forward-headers-strategy: framework
 spring:
-  # 强制使用代码配置,不要使用配置文件
+  # 强制使用代码配置,不要使用配置文件.
   flyway:
     check-location: true
     enabled: false
