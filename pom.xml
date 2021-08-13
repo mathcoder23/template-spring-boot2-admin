@@ -20,18 +20,14 @@
     </properties>
     <modules>
         <module>gateway-web</module>
-        <module>framework-basic/base-dao</module>
-        <module>framework-basic/base-comm</module>
-        <module>framework-basic/base-web</module>
-        <module>framework-service/user-service</module>
+        <module>framework-basic</module>
+        <module>application-service</module>
     </modules>
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
-<!--        </dependency>-->
-
-
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
+        <!--        </dependency>-->
 
 
         <dependency>
