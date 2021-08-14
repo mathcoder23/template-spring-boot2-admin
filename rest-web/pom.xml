@@ -64,7 +64,7 @@
         </dependency>
         <dependency>
             <groupId>org.pettyfox.framework</groupId>
-            <artifactId>user-service</artifactId>
+            <artifactId>account-service</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
