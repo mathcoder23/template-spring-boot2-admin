@@ -12,6 +12,7 @@ spring:
     encoding: utf-8
     locations: classpath:db
     validate-on-migrate: true
+
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -19,18 +20,18 @@ spring:
     dynamic:
       datasource:
         master:
-          url: jdbc:mysql://${MYSQL_URL}/t_user?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
+          url: jdbc:mysql://${MYSQL_URL:localhost:3306}/template_demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
           driver-class-name: com.mysql.cj.jdbc.Driver
-          username: ${MYSQL_USERNAME}
-          password: ${MYSQL_PASSWORD}
+          username: ${MYSQL_USERNAME:root}
+          password: ${MYSQL_PASSWORD:123456}
           hikari:
             minIdle: 5
             maxPoolSize: 10
         userDb:
-          url: jdbc:mysql://${MYSQL_URL}/t_user?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
+          url: jdbc:mysql://${MYSQL_URL:localhost:3306}/template_demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
           driver-class-name: com.mysql.cj.jdbc.Driver
-          username: ${MYSQL_USERNAME}
-          password: ${MYSQL_PASSWORD}
+          username: ${MYSQL_USERNAME:root}
+          password: ${MYSQL_PASSWORD:123456}
           hikari:
             minIdle: 5
             maxPoolSize: 10

@@ -1,7 +1,7 @@
 package org.pettyfox.framework.gateway.oauth2;
 
 import lombok.extern.slf4j.Slf4j;
-import org.pettyfox.framework.gateway.oauth2.encoder.MyPasswordEncoderFactories;
+import org.pettyfox.framework.gateway.oauth2.password.MyPasswordEncoderFactories;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

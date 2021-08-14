@@ -5,7 +5,7 @@ import org.pettyfox.base.comm.type.BaseEnum;
 /**
  * @ClassName CommDirtyExceptionCode
  * @Description 公共异常响应码
- * @Author eface
+ * @author Petty Fox
  * @Date 2020/3/30 9:49
  * @Version 1.0
  */

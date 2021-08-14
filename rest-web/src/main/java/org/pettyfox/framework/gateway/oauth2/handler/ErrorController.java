@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * filter异常中转
- * @author eface
+ * @author Petty Fox
  */
 @RestController
 public class ErrorController {

@@ -9,7 +9,7 @@ import lombok.Data;
 /**
  * @ClassName BaseEntityLogicDelete
  * @Description 基础逻辑删除实体
- * @Author eface
+ * @author Petty Fox
  * @Date 2020/3/25 17:29
  * @Version 1.0
  */

@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 /**
  * 启用日志注解
- * @author eface
+ * @author Petty Fox
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

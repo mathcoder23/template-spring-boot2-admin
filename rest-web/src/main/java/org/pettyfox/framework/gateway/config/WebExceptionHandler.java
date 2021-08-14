@@ -12,13 +12,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import java.util.stream.Collectors;
 
 /**
  * 异常处理
- * @author eface
+ * @author Petty Fox
  */
 @ControllerAdvice
 @Slf4j
@@ -58,18 +56,6 @@ public class WebExceptionHandler {
     @ResponseBody
     public RestObjectResponse bindExceptionHandler(BindException e) {
         String message = e.getBindingResult().getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining());
-        return RestObjectResponse.err(RestObjectResponseCode.API_ERROR_PARAM,0,message);
-    }
-
-    /**
-     * 处理请求参数格式错误 @RequestParam上validate失败后抛出的异常是javax.validation.ConstraintViolationException
-     * @param e
-     * @return
-     */
-    @ExceptionHandler(ConstraintViolationException.class)
-    @ResponseBody
-    public RestObjectResponse constraintViolationExceptionHandler(ConstraintViolationException e) {
-        String message = e.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.joining());
         return RestObjectResponse.err(RestObjectResponseCode.API_ERROR_PARAM,0,message);
     }
 

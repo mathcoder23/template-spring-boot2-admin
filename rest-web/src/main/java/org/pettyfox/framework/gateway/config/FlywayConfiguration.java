@@ -11,13 +11,13 @@ import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.pettyfox.framework.service.user.config.StaticConfig.DS_USER_DB;
+import static org.pettyfox.framework.service.account.infrastructure.config.AccountAggregateConfig.*;
 
 
 /**
  * 基于flyway的多数据,数据结构同步配置.取到数据源列表后,根据名称依次校验表sql
  *
- * @author eface
+ * @author Petty Fox
  */
 @Component("flyway")
 @Slf4j
@@ -38,23 +38,26 @@ public class FlywayConfiguration {
         FluentConfiguration configuration = Flyway.configure();
         Flyway flyway;
         //主数据源根据flyway
-        configuration.locations("classpath:" + DS_PREFIX+DS_MASTER)
+        configuration.locations("classpath:" + DS_PREFIX + DS_MASTER)
                 .dataSource(dataSourceList.loadDataSources().get("master"))
                 .encoding("utf-8")
                 .validateOnMigrate(true);
         flyway = new Flyway(configuration);
         flyway.migrate();
 
-
-        List<String> dbs = Arrays.asList(DS_USER_DB);
+        // 区分先后顺序，表结构与数据的初始化分开执行
+        List<String> dbs = Arrays.asList(FLYWAY_DB_SQL, FLYWAY_DB_SQL_DATA);
         for (String db : dbs) {
-            configuration.locations("classpath:" +db)
-                    .dataSource(dataSourceList.loadDataSources().get(db))
+            configuration.locations("classpath:" + db)
+                    //TODO 获取数据源暂时写死
+                    .dataSource(dataSourceList.loadDataSources().get(DS_USER_DB))
                     .encoding("utf-8")
+                    .table("history_" + db)
+                    .baselineOnMigrate(true)
                     .validateOnMigrate(true);
             flyway = new Flyway(configuration);
             flyway.migrate();
-            log.info("init sql finished for db:{}",db);
+            log.info("init sql finished for db:{}", db);
         }
     }
 }

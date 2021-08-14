@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * RestFul对象响应
- * @author eface
+ * @author Petty Fox
  * @param <T>
  */
 @Data

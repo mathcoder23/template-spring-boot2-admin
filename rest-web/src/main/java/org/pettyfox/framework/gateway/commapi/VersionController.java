@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 服务器软件版本信息
- * @author eface
+ * @author Petty Fox
  */
 @Controller
 @RequestMapping("commApi/version")
@@ -46,7 +47,7 @@ public class VersionController {
     private void responseMd(HttpServletResponse response,String filename,String title) throws IOException {
         Resource resource = resourceLoader.getResource(filename);
         InputStream is = resource.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is,"UTF-8");
+        InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
         BufferedReader br = new BufferedReader(isr);
         String data = "";
         StringBuffer sb = new StringBuffer();

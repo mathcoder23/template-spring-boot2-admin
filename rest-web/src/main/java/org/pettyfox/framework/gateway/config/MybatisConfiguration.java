@@ -12,11 +12,14 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Properties;
 
 @Configuration
-@MapperScan("org.pettyfox.framework.service.user.modules.mapper")
+@MapperScan("org.pettyfox.framework.service.account.doamin.account.repository")
 public class MybatisConfiguration implements IdentifierGenerator {
+
+    private static final Snowflake SNOWFLAKE = IdUtil.createSnowflake(1, 1);
 
     /**
      * 乐观锁
+     *
      * @return
      */
     @Bean
@@ -26,26 +29,27 @@ public class MybatisConfiguration implements IdentifierGenerator {
 
     /**
      * 雪花id
+     *
      * @param entity
      * @return
      */
     @Override
     public Long nextId(Object entity) {
-        Snowflake snowflake = IdUtil.createSnowflake(1, 1);
-        return snowflake.nextId();
+        return SNOWFLAKE.nextId();
     }
 
     /**
      * 分页配置
+     *
      * @return
      */
     @Bean
-    public PageInterceptor pageInterceptor(){
+    public PageInterceptor pageInterceptor() {
         PageInterceptor pageInterceptor = new PageInterceptor();
         Properties p = new Properties();
-        p.setProperty("closeConn","false");
+        p.setProperty("closeConn", "false");
         //对于sqlite数据库必须配置数据库方言，否则会发生数据库连接泄露的问题。
-        p.setProperty("helperDialect","sqlite");
+        p.setProperty("helperDialect", "sqlite");
         pageInterceptor.setProperties(p);
         return pageInterceptor;
     }

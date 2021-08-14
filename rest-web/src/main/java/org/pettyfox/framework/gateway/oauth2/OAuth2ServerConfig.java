@@ -1,15 +1,16 @@
 package org.pettyfox.framework.gateway.oauth2;
 
 import org.pettyfox.framework.gateway.oauth2.auth.AuthServiceImpl;
+import org.pettyfox.framework.gateway.oauth2.auth.username.UsernameAuthServiceImpl;
+import org.pettyfox.framework.gateway.oauth2.auth.username.UsernameTokenGranter;
 import org.pettyfox.framework.gateway.oauth2.handler.AuthExceptionEntryPoint;
 import org.pettyfox.framework.gateway.oauth2.handler.CustomAccessDeniedHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -18,12 +19,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.CompositeTokenGranter;
+import org.springframework.security.oauth2.provider.TokenGranter;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Configuration
 public class OAuth2ServerConfig {
@@ -37,6 +41,7 @@ public class OAuth2ServerConfig {
         private AuthExceptionEntryPoint authExceptionEntryPoint;
         @Resource
         private CustomAccessDeniedHandler customAccessDeniedHandler;
+
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
             resources.resourceId(DEMO_RESOURCE_ID).stateless(true);
@@ -56,17 +61,16 @@ public class OAuth2ServerConfig {
                     .and()
                     .anonymous()
                     .and()
-                    .authorizeRequests() .antMatchers(
+                    .authorizeRequests().antMatchers(
                     "/webjars/**",
                     "/resources/**",
-                    "/swagger-ui.html",
+                    "/doc.html",//swagger knife4j接口文档入口
                     "/swagger-resources/**",
                     "/v2/api-docs")
                     .permitAll()
                     .antMatchers(
-                            "/openApi/produce/device/v1/oauth/login"
-                            ,"/openApi/discoveryWebsocketNode/v1/**"
-                            ,"/commApi/**").permitAll()
+                            "/openApi/**"
+                    ).permitAll()
                     .antMatchers("/**").authenticated();//配置order访问控制，必须认证过后才可以访问
             // @formatter:on
         }
@@ -81,6 +85,10 @@ public class OAuth2ServerConfig {
         AuthenticationManager authenticationManager;
         @Resource
         AuthServiceImpl authService;
+        @Resource
+        private UsernameAuthServiceImpl usernameAuthService;
+        @Resource
+        private PasswordEncoder passwordEncoder;
 
         @Override
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -96,29 +104,48 @@ public class OAuth2ServerConfig {
                     .and().withClient("client_2")
                     .resourceIds(DEMO_RESOURCE_ID)
                     .authorizedGrantTypes("password", "refresh_token")
-                    .accessTokenValiditySeconds(60*60*24*7)
-                    .refreshTokenValiditySeconds(60*60*24*7)
+                    .accessTokenValiditySeconds(60 * 60 * 24 * 7)
+                    .refreshTokenValiditySeconds(60 * 60 * 24 * 7)
                     .scopes("admin")
                     .authorities("admin")
                     .secret(key)
-                    .and().withClient("version")
+                    .and()
+                    .withClient("username")
                     .resourceIds(DEMO_RESOURCE_ID)
-                    .authorizedGrantTypes("password", "refresh_token")
+                    .authorizedGrantTypes( "refresh_token",UsernameTokenGranter.GRANT_TYPE)
                     .accessTokenValiditySeconds(60*60*24*7)
                     .refreshTokenValiditySeconds(60*60*24*7)
                     .scopes("select")
                     .authorities("uploader")
                     .secret(key2);
         }
+
         @Resource
         WebResponseExceptionTranslator webResponseExceptionTranslator;
+
         @Override
         public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
             endpoints
                     .userDetailsService(authService)
                     .tokenStore(new InMemoryTokenStore())
+                    .tokenGranter(tokenGranter(endpoints))
                     .tokenEnhancer(new CustomTokenEnhancer())
                     .authenticationManager(authenticationManager).exceptionTranslator(webResponseExceptionTranslator);
+        }
+
+        /**
+         * 重点
+         * 先获取已经有的五种授权，然后添加我们自己的进去
+         *
+         * @param endpoints AuthorizationServerEndpointsConfigurer
+         * @return TokenGranter
+         */
+        private TokenGranter tokenGranter(final AuthorizationServerEndpointsConfigurer endpoints) {
+            List<TokenGranter> granters = new ArrayList<>(Collections.singletonList(endpoints.getTokenGranter()));
+            granters.add(new UsernameTokenGranter(endpoints.getTokenServices(), endpoints.getClientDetailsService(),
+                    endpoints.getOAuth2RequestFactory(), usernameAuthService, passwordEncoder));
+
+            return new CompositeTokenGranter(granters);
         }
 
         @Override

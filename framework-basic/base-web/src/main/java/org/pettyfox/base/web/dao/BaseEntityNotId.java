@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * @ClassName BaseEntityNotId
  * @Description BaseEntityNotId
- * @Author eface
+ * @author Petty Fox
  * @Date 2020/3/24 12:11
  * @Version 1.0
  */

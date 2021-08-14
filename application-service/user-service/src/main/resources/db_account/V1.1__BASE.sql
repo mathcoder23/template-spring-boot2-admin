@@ -1,0 +1,35 @@
+CREATE TABLE `t_account`  (
+  `id` bigint(0) NOT NULL,
+  `nick` varchar(255) NULL,
+  `username` varchar(2048) NOT NULL,
+  `password` varchar(2048) NOT NULL,
+  `enable` tinyint(1) NOT NULL DEFAULT 1,
+  `user_status` int(11) NOT NULL DEFAULT 0,
+  `user_status_remark` varchar(1024) NULL,
+  `phone` varchar(15) NULL,
+  `role_id` bigint(0)  NULL,
+  `email` varchar(255) NULL,
+   `phone_auth`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '手机号认证',
+   `email_auth` tinyint(1) NOT NULL DEFAULT 0 COMMENT '邮件认证',
+   `remark` varchar(1024) NULL,
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`)
+);
+CREATE TABLE `t_system_log`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `datetime` datetime(0) NULL,
+  `account_id` int(0) NULL,
+  `account_name` varchar(255) NULL,
+  `ip` varchar(255) NULL,
+  `api` varchar(1024) NULL,
+  `log` varchar(1024) NULL,
+  `type` integer(0) NOT NULL,
+  `data` json NULL,
+  `remark` varchar(1024) NULL,
+  `option_type` integer NULL,
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
+  `flag` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+);
