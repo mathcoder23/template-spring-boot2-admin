@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan({"org.pettyfox.framework"})
 @EnableAsync
 @EnableTransactionManagement
-public class GatewayWebApplication {
+public class RestWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GatewayWebApplication.class, args);
+        SpringApplication.run(RestWebApplication.class, args);
     }
 
 }

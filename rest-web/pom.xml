@@ -10,12 +10,12 @@
     </parent>
     <artifactId>rest-web</artifactId>
     <version>1.0.0</version>
-    <name>gateway-web</name>
+    <name>rest-web</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
-        <docker.dir>../docker/jar/${project.name}</docker.dir><!-- docker打包路径 -->
+        <docker.dir>../deploy/docker/jar/${project.name}</docker.dir><!-- docker打包路径 -->
     </properties>
     <dependencies>
         <dependency>

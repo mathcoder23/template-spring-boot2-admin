@@ -19,7 +19,7 @@
         <sub.version>1.0.0</sub.version>
     </properties>
     <modules>
-        <module>gateway-web</module>
+        <module>rest-web</module>
         <module>framework-basic</module>
         <module>application-service</module>
     </modules>
