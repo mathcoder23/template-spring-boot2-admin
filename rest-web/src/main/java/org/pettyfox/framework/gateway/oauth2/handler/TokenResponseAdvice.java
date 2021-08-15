@@ -1,6 +1,6 @@
 package org.pettyfox.framework.gateway.oauth2.handler;
 
-import org.pettyfox.base.web.rest.RestObjectResponse;
+import org.pettyfox.base.web.dto.rest.RestObjectResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;

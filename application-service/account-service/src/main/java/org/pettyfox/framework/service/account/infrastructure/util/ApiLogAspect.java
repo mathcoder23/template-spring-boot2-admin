@@ -1,4 +1,4 @@
-package org.pettyfox.framework.service.account.log;
+package org.pettyfox.framework.service.account.infrastructure.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.ArrayUtils;
@@ -23,11 +23,6 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 
-/**
- *
- * @author lizhen
- * @date 2017/3/8
- */
 @Aspect
 @Slf4j
 @Component

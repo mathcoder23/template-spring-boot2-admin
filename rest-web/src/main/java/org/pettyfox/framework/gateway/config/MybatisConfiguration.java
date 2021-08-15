@@ -9,8 +9,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Properties;
-
 @Configuration
 @MapperScan("org.pettyfox.framework.service.account.doamin.account.repository")
 public class MybatisConfiguration implements IdentifierGenerator {
@@ -45,12 +43,6 @@ public class MybatisConfiguration implements IdentifierGenerator {
      */
     @Bean
     public PageInterceptor pageInterceptor() {
-        PageInterceptor pageInterceptor = new PageInterceptor();
-        Properties p = new Properties();
-        p.setProperty("closeConn", "false");
-        //对于sqlite数据库必须配置数据库方言，否则会发生数据库连接泄露的问题。
-        p.setProperty("helperDialect", "sqlite");
-        pageInterceptor.setProperties(p);
-        return pageInterceptor;
+        return new PageInterceptor();
     }
 }

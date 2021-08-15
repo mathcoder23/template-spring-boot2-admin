@@ -1,6 +1,6 @@
 package org.pettyfox.framework.gateway.oauth2.handler;
 
-import org.pettyfox.base.web.rest.ErrorResponse;
+import org.pettyfox.base.web.dto.rest.ErrorResponse;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;

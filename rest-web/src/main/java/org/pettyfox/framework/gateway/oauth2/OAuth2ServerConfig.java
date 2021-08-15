@@ -6,6 +6,7 @@ import org.pettyfox.framework.gateway.oauth2.auth.username.UsernameTokenGranter;
 import org.pettyfox.framework.gateway.oauth2.handler.AuthExceptionEntryPoint;
 import org.pettyfox.framework.gateway.oauth2.handler.CustomAccessDeniedHandler;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -22,7 +23,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 import org.springframework.security.oauth2.provider.CompositeTokenGranter;
 import org.springframework.security.oauth2.provider.TokenGranter;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -122,12 +123,14 @@ public class OAuth2ServerConfig {
 
         @Resource
         WebResponseExceptionTranslator webResponseExceptionTranslator;
-
+        @Resource
+        private RedisConnectionFactory factory;
         @Override
         public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
             endpoints
                     .userDetailsService(authService)
-                    .tokenStore(new InMemoryTokenStore())
+                    .tokenStore(new RedisTokenStore(factory)) // token save redis
+//                    .tokenStore(new InMemoryTokenStore()) // token save memory
                     .tokenGranter(tokenGranter(endpoints))
                     .tokenEnhancer(new CustomTokenEnhancer())
                     .authenticationManager(authenticationManager).exceptionTranslator(webResponseExceptionTranslator);

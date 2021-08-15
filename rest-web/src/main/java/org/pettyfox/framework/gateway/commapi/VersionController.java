@@ -1,6 +1,6 @@
 package org.pettyfox.framework.gateway.commapi;
 
-import org.pettyfox.base.web.rest.RestObjectResponse;
+import org.pettyfox.base.web.dto.rest.RestObjectResponse;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.ast.Node;

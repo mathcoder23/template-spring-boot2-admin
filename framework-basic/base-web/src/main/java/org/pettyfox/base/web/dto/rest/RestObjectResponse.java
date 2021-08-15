@@ -1,4 +1,4 @@
-package org.pettyfox.base.web.rest;
+package org.pettyfox.base.web.dto.rest;
 
 import com.alibaba.fastjson.JSON;
 import lombok.AllArgsConstructor;

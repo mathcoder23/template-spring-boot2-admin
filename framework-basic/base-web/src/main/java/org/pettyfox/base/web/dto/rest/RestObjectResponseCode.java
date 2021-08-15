@@ -1,4 +1,4 @@
-package org.pettyfox.base.web.rest;
+package org.pettyfox.base.web.dto.rest;
 
 public class RestObjectResponseCode {
     public static final int API_OK = 0;

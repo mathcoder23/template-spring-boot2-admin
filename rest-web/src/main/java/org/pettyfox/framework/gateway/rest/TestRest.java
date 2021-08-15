@@ -1,7 +1,7 @@
 package org.pettyfox.framework.gateway.rest;
 
 import io.swagger.annotations.Api;
-import org.pettyfox.base.web.rest.RestObjectResponse;
+import org.pettyfox.base.web.dto.rest.RestObjectResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

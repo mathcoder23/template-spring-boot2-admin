@@ -2,8 +2,8 @@ package org.pettyfox.framework.gateway.config;
 
 import org.pettyfox.base.comm.exception.DirtyException;
 import org.pettyfox.base.comm.exception.RestCommException;
-import org.pettyfox.base.web.rest.RestObjectResponse;
-import org.pettyfox.base.web.rest.RestObjectResponseCode;
+import org.pettyfox.base.web.dto.rest.RestObjectResponse;
+import org.pettyfox.base.web.dto.rest.RestObjectResponseCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.BindException;

@@ -2,8 +2,8 @@ package org.pettyfox.base.web;
 
 import org.pettyfox.base.comm.log.ApiLog;
 import org.pettyfox.base.comm.log.ApiLogType;
+import org.pettyfox.base.comm.web.RestObjectResponse;
 import org.pettyfox.base.web.dao.BaseEntityNotId;
-import org.pettyfox.base.web.rest.RestObjectResponse;
 import org.pettyfox.base.web.dao.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

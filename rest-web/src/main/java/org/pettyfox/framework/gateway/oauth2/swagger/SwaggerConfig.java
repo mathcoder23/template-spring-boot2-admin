@@ -52,7 +52,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .enable(true)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.pettyfox.framework.gateway.rest"))
+                .apis(RequestHandlerSelectors.basePackage("org.pettyfox.framework.service.account.interfaces.facade"))
                 .paths(PathSelectors.any())
                 .build()
                 .securitySchemes(Collections.singletonList(securitySchemeToken()))

@@ -12,7 +12,11 @@ spring:
     encoding: utf-8
     locations: classpath:db
     validate-on-migrate: true
-
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    password: ${REDIS_PWD}
+    database: ${REDIS_DATABASE:0}
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -58,7 +62,7 @@ mybatis-plus:
       logic-not-delete-value: 0
 logging:
   level:
-    com.eface.*: debug
+    org.pettyfox.*: debug
 project:
   build:
     date: '@maven.build.timestamp@'

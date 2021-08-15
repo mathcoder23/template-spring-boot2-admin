@@ -10,11 +10,11 @@ import java.util.Collection;
  * @version 1.0
  */
 public class UserSession implements UserDetails {
-    private String username;
-    private String password;
-    private Long accountId;
-    private Long roleId;
-    private Collection<? extends GrantedAuthority> grants;
+    private final String username;
+    private final String password;
+    private final Long accountId;
+    private final Long roleId;
+    private final Collection<? extends GrantedAuthority> grants;
 
     public UserSession(String username, String password, Long accountId,Long roleId, Collection<? extends GrantedAuthority> grants) {
         this.username = username;
