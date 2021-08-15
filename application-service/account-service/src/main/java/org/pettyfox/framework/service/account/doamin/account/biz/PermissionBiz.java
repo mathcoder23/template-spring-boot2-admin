@@ -13,6 +13,6 @@ import java.util.List;
  * @author Petty Fox
  * @since 2021-04-14
  */
-public interface PermissionService extends IService<Permission> {
+public interface PermissionBiz extends IService<Permission> {
     List<Permission> listByRoleIds(List<Long> roleIds);
 }

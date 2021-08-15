@@ -16,7 +16,7 @@ import java.util.List;
  * @author Petty Fox
  * @since 2021-04-14
  */
-public interface RolePermissionService extends IService<RolePermission> {
+public interface RolePermissionBiz extends IService<RolePermission> {
 
     void savePermission(RolePermissionEditParams p);
     PageInfo<RolePermission> listPage2(RolePermissionQueryParams query);

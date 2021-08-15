@@ -19,7 +19,7 @@ import java.util.List;
 public class PermissionTreeData extends BaseTree<Long, Permission> {
     public static List<PermissionTreeData> buildByList(Collection<Permission> list) {
         if (null == list || list.isEmpty()) {
-            return null;
+            return new ArrayList<>();
         }
         List<PermissionTreeData> resultList = new ArrayList<>();
         List<Tree<Long>> treeList = TreeUtil.build(new ArrayList<>(list), null, new TreeNodeConfig().setWeightKey("orderNum"), (treeNode, tree) -> {

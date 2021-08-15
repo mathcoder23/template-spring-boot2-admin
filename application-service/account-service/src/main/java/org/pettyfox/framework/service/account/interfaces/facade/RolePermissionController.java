@@ -4,7 +4,7 @@ package org.pettyfox.framework.service.account.interfaces.facade;
 import com.github.pagehelper.PageInfo;
 import org.pettyfox.base.comm.web.RestObjectResponse;
 import org.pettyfox.base.web.BaseController;
-import org.pettyfox.framework.service.account.doamin.account.biz.impl.RolePermissionServiceImpl;
+import org.pettyfox.framework.service.account.doamin.account.biz.impl.RolePermissionBizImpl;
 import org.pettyfox.framework.service.account.doamin.account.po.RolePermission;
 import org.pettyfox.framework.service.account.interfaces.dto.params.RolePermissionEditParams;
 import org.pettyfox.framework.service.account.interfaces.dto.params.RolePermissionQueryParams;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/account/role-permission")
-public class RolePermissionController extends BaseController<RolePermissionServiceImpl, RolePermission> {
+public class RolePermissionController extends BaseController<RolePermissionBizImpl, RolePermission> {
     @PostMapping("/savePermission")
     public RestObjectResponse<String> savePermission(@RequestBody RolePermissionEditParams p){
         baseService.savePermission(p);

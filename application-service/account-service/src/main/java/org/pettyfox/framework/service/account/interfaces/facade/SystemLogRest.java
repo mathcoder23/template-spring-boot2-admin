@@ -19,7 +19,7 @@ public class SystemLogRest extends BaseController {
     @Resource
     private SystemLogBiz systemLogBiz;
 
-    @RequestMapping(value = "/systemLog/list", method = RequestMethod.GET)
+    @PostMapping(value = "/systemLog/list")
     @ResponseBody
     @ApiOperation("日志列表")
     public RestObjectResponse<PageInfo<SystemLog>> list(

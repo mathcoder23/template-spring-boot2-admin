@@ -6,7 +6,7 @@ import com.github.pagehelper.PageInfo;
 import org.pettyfox.base.comm.utils.GatherCompareResult;
 import org.pettyfox.base.comm.utils.GatherComputer;
 import org.pettyfox.base.web.dao.BaseService;
-import org.pettyfox.framework.service.account.doamin.account.biz.RolePermissionService;
+import org.pettyfox.framework.service.account.doamin.account.biz.RolePermissionBiz;
 import org.pettyfox.framework.service.account.doamin.account.po.RolePermission;
 import org.pettyfox.framework.service.account.doamin.account.repository.RolePermissionMapper;
 import org.pettyfox.framework.service.account.interfaces.dto.params.RolePermissionEditParams;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  * @since 2021-04-14
  */
 @Service
-public class RolePermissionServiceImpl extends BaseService<RolePermissionMapper, RolePermission> implements RolePermissionService {
+public class RolePermissionBizImpl extends BaseService<RolePermissionMapper, RolePermission> implements RolePermissionBiz {
 
     @Override
     public void savePermission(RolePermissionEditParams p) {

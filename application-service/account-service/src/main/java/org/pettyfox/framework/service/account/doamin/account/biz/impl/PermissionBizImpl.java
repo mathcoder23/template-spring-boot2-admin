@@ -2,8 +2,8 @@ package org.pettyfox.framework.service.account.doamin.account.biz.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.pettyfox.base.web.dao.BaseService;
-import org.pettyfox.framework.service.account.doamin.account.biz.PermissionService;
-import org.pettyfox.framework.service.account.doamin.account.biz.RolePermissionService;
+import org.pettyfox.framework.service.account.doamin.account.biz.PermissionBiz;
+import org.pettyfox.framework.service.account.doamin.account.biz.RolePermissionBiz;
 import org.pettyfox.framework.service.account.doamin.account.po.Permission;
 import org.pettyfox.framework.service.account.doamin.account.po.RolePermission;
 import org.pettyfox.framework.service.account.doamin.account.repository.PermissionMapper;
@@ -22,10 +22,10 @@ import java.util.stream.Collectors;
  * @since 2021-04-15
  */
 @Service
-public class PermissionServiceImpl extends BaseService<PermissionMapper, Permission> implements PermissionService {
+public class PermissionBizImpl extends BaseService<PermissionMapper, Permission> implements PermissionBiz {
 
     @Resource
-    private RolePermissionService rolePermissionService;
+    private RolePermissionBiz rolePermissionService;
 
     @Override
     public List<Permission> listByRoleIds(List<Long> roleIds) {

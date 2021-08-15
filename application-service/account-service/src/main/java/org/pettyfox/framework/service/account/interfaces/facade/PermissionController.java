@@ -1,15 +1,21 @@
 package org.pettyfox.framework.service.account.interfaces.facade;
 
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.pettyfox.base.comm.log.ApiLog;
+import org.pettyfox.base.comm.log.ApiLogType;
 import org.pettyfox.base.comm.web.RestObjectResponse;
-import org.pettyfox.base.web.BaseController;
-import org.pettyfox.framework.service.account.doamin.account.biz.impl.PermissionServiceImpl;
+import org.pettyfox.framework.service.account.doamin.account.biz.PermissionBiz;
 import org.pettyfox.framework.service.account.doamin.account.po.Permission;
 import org.pettyfox.framework.service.account.interfaces.dto.data.PermissionTreeData;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -21,11 +27,30 @@ import java.util.List;
  * @since 2021-04-15
  */
 @RestController
-@RequestMapping("/api/account/permission")
-public class PermissionController extends BaseController<PermissionServiceImpl, Permission> {
+@Api(tags = "系统权限")
+public class PermissionController extends BaseController {
 
-    @PostMapping("/getTree")
+    @Resource
+    private PermissionBiz permissionBiz;
+
+    @PostMapping("/permission/getTree")
+    @ApiOperation("系统权限树")
     public RestObjectResponse<List<PermissionTreeData>> getTree() {
-        return RestObjectResponse.ok(PermissionTreeData.buildByList(baseService.list()));
+        return RestObjectResponse.ok(PermissionTreeData.buildByList(permissionBiz.list()));
     }
+
+    @PostMapping("/permission/save")
+    @ApiLog(log = "保存", optionType = ApiLogType.OptionType.SAVE)
+    public RestObjectResponse<Permission> save(@RequestBody Permission entity) {
+        boolean result = permissionBiz.saveOrUpdate(entity);
+        return RestObjectResponse.ok(entity);
+    }
+
+    @ApiLog(log = "删除", optionType = ApiLogType.OptionType.DELETE_BATCH)
+    @PostMapping("/permission/delete")
+    public RestObjectResponse<String> delete(@RequestParam("ids") String[] ids) {
+        permissionBiz.removeByIds(Arrays.asList(ids));
+        return RestObjectResponse.ok("删除成功");
+    }
+
 }
