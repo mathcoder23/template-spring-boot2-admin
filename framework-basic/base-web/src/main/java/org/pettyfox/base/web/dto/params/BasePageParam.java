@@ -5,13 +5,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BaseQueryParam {
+public class BasePageParam {
     private int pageNo = 1;
     private int pageSize = 20;
 
-    public BaseQueryParam(int pageNo, int pageSize) {
+    public BasePageParam(int pageNo, int pageSize) {
         this.pageNo = pageNo;
         this.pageSize = pageSize;
     }
-    public BaseQueryParam(){}
+    public BasePageParam(){}
 }

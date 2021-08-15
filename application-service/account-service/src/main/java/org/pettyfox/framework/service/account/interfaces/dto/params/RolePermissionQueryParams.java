@@ -2,7 +2,7 @@ package org.pettyfox.framework.service.account.interfaces.dto.params;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.pettyfox.base.web.dto.params.BaseQueryParam;
+import org.pettyfox.base.web.dto.params.BasePageParam;
 
 /**
  * @author eface .FW
@@ -11,6 +11,6 @@ import org.pettyfox.base.web.dto.params.BaseQueryParam;
  */
 @Getter
 @Setter
-public class RolePermissionQueryParams extends BaseQueryParam {
+public class RolePermissionQueryParams extends BasePageParam {
     private Long roleId;
 }
