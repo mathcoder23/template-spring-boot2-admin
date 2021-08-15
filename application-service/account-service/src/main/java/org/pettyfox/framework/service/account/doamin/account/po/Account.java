@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
+import org.pettyfox.base.comm.type.BaseEnum;
 import org.pettyfox.base.web.dao.BaseEntity;
 
 
@@ -45,6 +46,7 @@ public class Account extends BaseEntity<Long> {
 
     private Long roleId;
 
+    private Type type;
     /**
      * 用户状态
      */
@@ -55,4 +57,29 @@ public class Account extends BaseEntity<Long> {
      */
     private String userStatusRemark;
 
+    public enum Type implements BaseEnum<Type, Integer> {
+        /**
+         * 用户类型,[SUPER_ADMIN(1):超级管理员,USER(10):普通用户]
+         */
+        SUPER_ADMIN(1, "超级管理员"),
+        USER(10, "普通用户");
+
+        private final int value;
+        private final String name;
+
+        Type(int value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        @Override
+        public String getName() {
+            return this.name;
+        }
+
+        @Override
+        public Integer getValue() {
+            return value;
+        }
+    }
 }
