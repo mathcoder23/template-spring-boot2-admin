@@ -30,14 +30,15 @@ public class AccountController extends BaseController {
     private PermissionBiz permissionBiz;
 
     @PostMapping("/account/list")
-    @ApiOperation("賬戶列表")
+    @ApiOperation("账户列表")
     public RestObjectResponse<PageInfo<AccountVO>> list(@RequestBody BasePageParam p) {
         return RestObjectResponse.ok(accountBiz.list(p));
     }
 
     @PostMapping("/account/getPermissionTree")
-    @ApiOperation("賬戶權限")
+    @ApiOperation("账户权限")
     public RestObjectResponse<List<PermissionTreeData>> getTree() {
+        accountBiz.updateActiveTime(UserContext.getUserId());
         return RestObjectResponse.ok(PermissionTreeData.buildByList(permissionBiz.listByRoleIds(Collections.singletonList(UserContext.getRoleId()))));
     }
 }

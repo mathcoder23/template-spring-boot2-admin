@@ -6,7 +6,10 @@ import org.pettyfox.framework.service.account.doamin.account.po.Account;
 import org.pettyfox.framework.service.account.interfaces.dto.vo.AccountVO;
 
 public interface AccountBiz {
+
     Account getByUsername(String s);
 
     PageInfo<AccountVO> list(BasePageParam p);
+
+    void updateActiveTime(Long id);
 }

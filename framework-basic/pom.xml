@@ -16,7 +16,6 @@
     </parent>
 
     <modules>
-        <module>base-dao</module>
         <module>base-comm</module>
         <module>base-web</module>
     </modules>

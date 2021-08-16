@@ -23,7 +23,7 @@ import java.util.Map;
 public class DictController {
     @PostMapping("dict")
     public RestObjectResponse<Map<String, List<DictData>>> getDict() {
-        Map<String,List<DictData>> result = new HashMap<>();
+        Map<String,List<DictData>> result = new HashMap<>(64);
         ClassUtil.scanPackageBySuper("org.pettyfox.framework.service", BaseEnum.class).forEach(r -> {
             List<DictData> dictDataList = new ArrayList<>();
 

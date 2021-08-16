@@ -12,6 +12,8 @@ import org.pettyfox.framework.service.account.interfaces.assembler.AccountAssemb
 import org.pettyfox.framework.service.account.interfaces.dto.vo.AccountVO;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * @author Petty Fox.m
  */
@@ -28,7 +30,15 @@ public class AccountBizImpl extends BaseService<AccountMapper, Account> implemen
     @Override
     public PageInfo<AccountVO> list(BasePageParam p) {
 
-        PageHelper.startPage(p.getPageNo(),p.getPageSize());
-        return new PageInfo<AccountVO>(AccountAssembler.convert(this.list()));
+        PageHelper.startPage(p.getPageNo(), p.getPageSize());
+        return new PageInfo<>(AccountAssembler.convert(this.list()));
+    }
+
+    @Override
+    public void updateActiveTime(Long id) {
+        Account account = new Account();
+        account.setId(id);
+        account.setLastActiveTime(new Date());
+        this.updateById(account);
     }
 }

@@ -29,7 +29,6 @@ public class UsernameAuthServiceImpl implements UserDetailsService {
     @Resource
     private AccountBiz userBiz;
 
-
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Account user = userBiz.getByUsername(s);

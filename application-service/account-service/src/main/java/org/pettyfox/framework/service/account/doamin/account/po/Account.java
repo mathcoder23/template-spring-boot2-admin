@@ -7,6 +7,8 @@ import lombok.*;
 import org.pettyfox.base.comm.type.BaseEnum;
 import org.pettyfox.base.web.dao.BaseEntity;
 
+import java.util.Date;
+
 
 @Getter
 @Setter
@@ -47,6 +49,9 @@ public class Account extends BaseEntity<Long> {
     private Long roleId;
 
     private Type type;
+
+    private Date lastActiveTime;
+
     /**
      * 用户状态
      */

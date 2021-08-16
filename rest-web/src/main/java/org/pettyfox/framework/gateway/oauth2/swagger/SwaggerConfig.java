@@ -14,7 +14,9 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @EnableSwagger2WebMvc
@@ -52,7 +54,8 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .enable(true)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.pettyfox.framework.service.account.interfaces.facade"))
+                .apis(RequestHandlerSelectors.basePackage("org.pettyfox.framework.service.account.interfaces.facade")
+                        .or(RequestHandlerSelectors.basePackage("org.pettyfox.framework.gateway.rest")))
                 .paths(PathSelectors.any())
                 .build()
                 .securitySchemes(Collections.singletonList(securitySchemeToken()))
@@ -61,12 +64,13 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo());
 
     }
+
     @Bean
     List<GrantType> grantTypes() {
         List<GrantType> grantTypes = new ArrayList<>();
         TokenRequestEndpoint tokenRequestEndpoint = new TokenRequestEndpoint(
                 authServer + "/oauth/token",
-               "client_2", "123456");
+                "client_2", "123456");
         TokenEndpoint tokenEndpoint = new TokenEndpoint(authServer + "/oauth/token", "access_token");
         grantTypes.add(new AuthorizationCodeGrant(tokenRequestEndpoint, tokenEndpoint));
         return grantTypes;
@@ -75,6 +79,7 @@ public class SwaggerConfig {
     private ApiKey securitySchemeToken() {
         return new ApiKey("Bearer", "Authorization", "header");
     }
+
     /**
      * 这个类决定了你使用哪种认证方式，我这里使用密码模式
      * 其他方式自己摸索一下，完全莫问题啊

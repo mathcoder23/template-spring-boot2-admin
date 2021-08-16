@@ -4,8 +4,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.pettyfox.framework.service.account.doamin.account.po.Account;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -22,4 +24,13 @@ public class AccountVO implements Serializable {
 
     @ApiModelProperty("用户角色")
     private Long roleId;
+
+    @ApiModelProperty("用户角色")
+    private Boolean enable;
+
+    @ApiModelProperty("用户类型")
+    private Account.Type type;
+
+    @ApiModelProperty("最近活跃时间")
+    private Date lastActiveTime;
 }

@@ -6,12 +6,12 @@ import io.swagger.annotations.ApiOperation;
 import org.pettyfox.base.comm.log.ApiLog;
 import org.pettyfox.base.comm.log.ApiLogType;
 import org.pettyfox.base.comm.web.RestObjectResponse;
+import org.pettyfox.base.web.dto.params.BaseIdsParams;
 import org.pettyfox.framework.service.account.doamin.account.biz.PermissionBiz;
 import org.pettyfox.framework.service.account.doamin.account.po.Permission;
 import org.pettyfox.framework.service.account.interfaces.dto.data.PermissionTreeData;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -48,8 +48,8 @@ public class PermissionController extends BaseController {
 
     @ApiLog(log = "删除", optionType = ApiLogType.OptionType.DELETE_BATCH)
     @PostMapping("/permission/delete")
-    public RestObjectResponse<String> delete(@RequestParam("ids") String[] ids) {
-        permissionBiz.removeByIds(Arrays.asList(ids));
+    public RestObjectResponse<String> delete(@RequestBody BaseIdsParams p) {
+        permissionBiz.removeByIds(p.getIds());
         return RestObjectResponse.ok("删除成功");
     }
 
