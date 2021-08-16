@@ -46,7 +46,7 @@ public class ApiLogAspect {
         JSONObject data = new JSONObject();
         if(annotation.optionType() == ApiLogType.OptionType.DELETE_BATCH){
             if(ArrayUtils.isNotEmpty(joinPoint.getArgs()) && joinPoint.getArgs()[0] instanceof List){
-                List<Integer> ids = (List<Integer>) joinPoint.getArgs()[0];
+                List<Long> ids = (List<Long>) joinPoint.getArgs()[0];
                logText += Strings.join(ids,',');
             }else{
                 log.warn("api log code format error!{}",annotation.log());

@@ -4,12 +4,15 @@ package org.pettyfox.framework.service.account.interfaces.facade;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.pettyfox.base.comm.log.ApiLog;
+import org.pettyfox.base.comm.log.ApiLogType;
 import org.pettyfox.base.comm.web.RestObjectResponse;
 import org.pettyfox.base.web.context.UserContext;
 import org.pettyfox.base.web.dto.params.BasePageParam;
 import org.pettyfox.framework.service.account.doamin.account.biz.AccountBiz;
 import org.pettyfox.framework.service.account.doamin.account.biz.PermissionBiz;
 import org.pettyfox.framework.service.account.interfaces.dto.data.PermissionTreeData;
+import org.pettyfox.framework.service.account.interfaces.dto.dto.EditAccountDTO;
 import org.pettyfox.framework.service.account.interfaces.dto.vo.AccountVO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,5 +43,13 @@ public class AccountController extends BaseController {
     public RestObjectResponse<List<PermissionTreeData>> getTree() {
         accountBiz.updateActiveTime(UserContext.getUserId());
         return RestObjectResponse.ok(PermissionTreeData.buildByList(permissionBiz.listByRoleIds(Collections.singletonList(UserContext.getRoleId()))));
+    }
+
+    @PostMapping("/account/save")
+    @ApiOperation("保存账户")
+    @ApiLog(log = "保存账户", optionType = ApiLogType.OptionType.SAVE)
+    public RestObjectResponse<String> save(@RequestBody EditAccountDTO d) {
+        accountBiz.save(d);
+        return RestObjectResponse.ok("");
     }
 }

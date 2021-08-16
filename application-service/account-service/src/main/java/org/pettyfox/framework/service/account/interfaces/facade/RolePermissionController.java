@@ -2,6 +2,8 @@ package org.pettyfox.framework.service.account.interfaces.facade;
 
 
 import com.github.pagehelper.PageInfo;
+import org.pettyfox.base.comm.log.ApiLog;
+import org.pettyfox.base.comm.log.ApiLogType;
 import org.pettyfox.base.comm.web.RestObjectResponse;
 import org.pettyfox.base.web.BaseController;
 import org.pettyfox.framework.service.account.doamin.account.biz.impl.RolePermissionBizImpl;
@@ -24,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/account/role-permission")
 public class RolePermissionController extends BaseController<RolePermissionBizImpl, RolePermission> {
+
+    @ApiLog(log = "保存权限", optionType = ApiLogType.OptionType.SAVE)
     @PostMapping("/savePermission")
     public RestObjectResponse<String> savePermission(@RequestBody RolePermissionEditParams p){
         baseService.savePermission(p);
