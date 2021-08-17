@@ -11,7 +11,6 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <version>1.0.0</version>
     <artifactId>netty-websocket</artifactId>
     <dependencies>
         <dependency>
@@ -23,6 +22,10 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
             <version>4.1.52.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 

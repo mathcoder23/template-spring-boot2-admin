@@ -1,7 +1,6 @@
 package org.utils.netty.standard;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -16,13 +15,11 @@ import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
-import org.utils.netty.enums.PortType;
 import org.utils.netty.pojo.PojoEndpointServer;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -34,18 +31,10 @@ public class WebsocketServer {
 
     private final ServerEndpointConfig config;
 
-    private static final ConcurrentHashMap<String,Integer> SOCKET_PORTS_MAP = new ConcurrentHashMap<>();
-
-    public static final ConcurrentHashMap<String, Integer> TEMP_SOCKET_MAP = new ConcurrentHashMap<>();
-
-
-
-
     public WebsocketServer(PojoEndpointServer webSocketServerHandler, ServerEndpointConfig serverEndpointConfig) {
         this.pojoEndpointServer = webSocketServerHandler;
         this.config = serverEndpointConfig;
     }
-
 
 
     public void init(ApplicationContext context) throws InterruptedException {
@@ -66,17 +55,17 @@ public class WebsocketServer {
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) throws Exception {
-                        if (config.isEnableSsl()) {
-                            String sslEnable = System.getProperty("sslEnable");
-                            if ("1".equals(sslEnable)) {
-                                ch.pipeline().addLast("ssl", SslUtil.createSSLContext(config.getCaPath(), config.getKeyPath()).newHandler(ByteBufAllocator.DEFAULT));
-                            }
-                        }
+//                        if (config.isEnableSsl()) {
+//                            String sslEnable = System.getProperty("sslEnable");
+//                            if ("1".equals(sslEnable)) {
+//                                ch.pipeline().addLast("ssl", SslUtil.createSSLContext(config.getCaPath(), config.getKeyPath()).newHandler(ByteBufAllocator.DEFAULT));
+//                            }
+//                        }
                         ch.pipeline().addLast(new IdleStateHandler(15, 0, 0, TimeUnit.SECONDS));
                         ch.pipeline().addLast("http-codec", new HttpServerCodec());
                         ch.pipeline().addLast("aggregator", new HttpObjectAggregator(65536));
                         ch.pipeline().addLast("http-chunked", new ChunkedWriteHandler());
-                        ch.pipeline().addLast(new WebSocketFrameAggregator(1024*1024*100));
+                        ch.pipeline().addLast(new WebSocketFrameAggregator(1024 * 1024 * 100));
                         if (config.isEnableHeartBeat()) {
                             ch.pipeline().addLast(new HeartBeatServerHandler(pojoEndpointServer));
                         }
@@ -95,19 +84,7 @@ public class WebsocketServer {
 
         ChannelFuture channelFuture;
         int port = config.getPort();
-        PortType portType = config.getPortType();
-        if (portType.equals(PortType.CONFIG)) {
-            try {
-                port = TEMP_SOCKET_MAP.get(config.getServerName());
-                WebsocketServer.TEMP_SOCKET_MAP.remove(config.getServerName());
-            } catch (Exception e) {
-                log.error("ws port exception", e);
-            }
-        }else if(portType.equals(PortType.RANDOM)){
-            port = 0;
-        }
         if ("0.0.0.0".equals(config.getHost())) {
-//            InetSocketAddress socketAddress = new InetSocketAddress(0);
             channelFuture = bootstrap.bind(port);
 
         } else {
@@ -115,7 +92,7 @@ public class WebsocketServer {
                 channelFuture = bootstrap.bind(new InetSocketAddress(InetAddress.getByName(config.getHost()), port));
             } catch (UnknownHostException e) {
                 channelFuture = bootstrap.bind(config.getHost(), port);
-                log.error("Netty host bind exception. using config host :"+config.getHost(),e);
+                log.error("Netty host bind exception. using config host :" + config.getHost(), e);
             }
         }
 
@@ -123,14 +100,13 @@ public class WebsocketServer {
         int finalPort = port;
         channelFuture.addListener(future -> {
             if (!future.isSuccess()) {
-                log.error("Netty port bind exception,port:"+ finalPort,future.cause());
+                log.error("Netty port bind exception,port:" + finalPort, future.cause());
                 System.exit(SpringApplication.exit(context));
-            }else{
-                if(channel instanceof NioServerSocketChannel){
-                    NioServerSocketChannel socketChannel = (NioServerSocketChannel)channel;
+            } else {
+                if (channel instanceof NioServerSocketChannel) {
+                    NioServerSocketChannel socketChannel = (NioServerSocketChannel) channel;
                     int randomPort = socketChannel.localAddress().getPort();
-                    SOCKET_PORTS_MAP.put(config.getServerName(),randomPort);
-                    log.info("randomPort+++++++++++++++++++++"+randomPort);
+                    log.info("netty websocket port:{}", randomPort);
                 }
             }
         });
@@ -177,8 +153,5 @@ public class WebsocketServer {
         }
     }
 
-    public static Integer getSocketServerPort(String serverName){
-        return SOCKET_PORTS_MAP.get(serverName);
-    }
 
 }

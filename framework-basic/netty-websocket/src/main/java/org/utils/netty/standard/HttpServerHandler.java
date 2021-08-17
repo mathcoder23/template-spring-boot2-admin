@@ -118,7 +118,7 @@ class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
             }
             sendHttpResponse(ctx, req, res);
             InetSocketAddress address = (InetSocketAddress) ctx.channel().remoteAddress();
-            log.error(String.format("此时服务器启用的是未加密的websocket连接，但客户端使用的是加密的或错误报文格式的websocket消息，请确认协议是否一致,如果是一体机设备它会在几分钟后恢复,客户端IP地址: %s:%s", address.getAddress(), address.getPort()));
+            log.error(String.format("此时服务器启用的是未加密的websocket连接，但客户端使用的是加密的或错误报文格式的websocket消息，请确认协议是否一致,客户端IP地址: %s:%s", address.getAddress(), address.getPort()));
             ctx.close();
             return;
         }

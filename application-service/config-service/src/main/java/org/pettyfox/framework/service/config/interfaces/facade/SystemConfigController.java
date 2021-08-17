@@ -2,6 +2,8 @@ package org.pettyfox.framework.service.config.interfaces.facade;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.pettyfox.base.comm.log.ApiLog;
+import org.pettyfox.base.comm.log.ApiLogType;
 import org.pettyfox.base.comm.web.RestObjectResponse;
 import org.pettyfox.framework.service.config.domain.biz.ConfigSystemBiz;
 import org.pettyfox.framework.service.config.domain.biz.ConfigSystemGroupBiz;
@@ -31,6 +33,7 @@ public class SystemConfigController extends BaseController {
 
     @ApiOperation("批量保存配置")
     @PostMapping("/systemConfig/simpleBatchModify")
+    @ApiLog(log = "修改系统参数配置", optionType = ApiLogType.OptionType.SAVE)
     public RestObjectResponse<String> simpleBatchModify(@RequestBody List<SystemConfigModifyData> list) {
         configSystemBiz.simpleBatchModify(list);
         return RestObjectResponse.ok("");

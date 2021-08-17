@@ -9,13 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>notify-service</artifactId>
+    <artifactId>message-service</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.pettyfox.framework</groupId>
             <artifactId>base-web</artifactId>
             <version>${sub.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.pettyfox.framework</groupId>
+            <artifactId>netty-websocket</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

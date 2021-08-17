@@ -22,7 +22,6 @@
         <module>rest-web</module>
         <module>framework-basic</module>
         <module>application-service</module>
-        <module>application-service/config-service</module>
     </modules>
     <dependencies>
         <!--        <dependency>-->
