@@ -10,7 +10,6 @@ import org.pettyfox.framework.service.account.interfaces.dto.params.SystemLogPar
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController

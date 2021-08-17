@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("org.pettyfox.framework.service.account.doamin.account.repository")
+@MapperScan({"org.pettyfox.framework.service.account.doamin.account.repository", "org.pettyfox.framework.service.config.domain.repository"})
 public class MybatisConfiguration implements IdentifierGenerator {
 
     private static final Snowflake SNOWFLAKE = IdUtil.createSnowflake(1, 1);

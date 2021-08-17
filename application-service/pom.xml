@@ -17,6 +17,8 @@
 
     <modules>
         <module>account-service</module>
+        <module>notify-service</module>
+        <module>config-service</module>
     </modules>
 
 </project>

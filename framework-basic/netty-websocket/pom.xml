@@ -7,20 +7,22 @@
         <groupId>org.pettyfox.framework</groupId>
         <artifactId>spring-boot2-template</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../</relativePath>
+        <relativePath>../../</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-
     <version>1.0.0</version>
-
-    <artifactId>account-service</artifactId>
-
+    <artifactId>netty-websocket</artifactId>
     <dependencies>
         <dependency>
-            <groupId>org.pettyfox.framework</groupId>
-            <artifactId>base-web</artifactId>
-            <version>${sub.version}</version>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-tcnative-boringssl-static</artifactId>
+            <version>2.0.26.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.52.Final</version>
         </dependency>
     </dependencies>
 

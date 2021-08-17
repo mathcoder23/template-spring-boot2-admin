@@ -68,6 +68,12 @@
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.pettyfox.framework</groupId>
+            <artifactId>config-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
