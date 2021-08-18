@@ -65,9 +65,6 @@ public class WebWebsocketServer {
             return;
         }
 
-
-        log.info("websocket oopen:{}", parameterMap.getParameterValues("wsSessionId").get(0));
-
         SESSION_POOL.put(token, session);
     }
 

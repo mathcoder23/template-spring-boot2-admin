@@ -1,44 +1,30 @@
-INSERT INTO `t_account` (`id`,
-                         `nick`,
-                         `username`,
-                         `password`,
-                         `role_id`,
-                         `type`,
-                         `enable`)
-VALUES (1,
-        '超级管理员',
-        'admin',
-        '{MD5}103c74e7163bb88410bf53ab21c7ab60', 1, 1, 10);
+INSERT INTO `template_demo`.`t_account`(`id`, `nick`, `username`, `password`, `enable`, `user_status`, `user_status_remark`, `phone`, `role_id`, `email`, `type`, `phone_auth`, `email_auth`, `remark`, `last_active_time`, `create_time`, `update_time`) VALUES (1, '超级管理员', 'admin', '{MD5}103c74e7163bb88410bf53ab21c7ab60', 10, 0, NULL, NULL, 1, NULL, 1, 0, 0, NULL, '2021-08-18 13:51:44', '2021-08-16 09:33:36', '2021-08-18 13:51:42');
+INSERT INTO `template_demo`.`t_account`(`id`, `nick`, `username`, `password`, `enable`, `user_status`, `user_status_remark`, `phone`, `role_id`, `email`, `type`, `phone_auth`, `email_auth`, `remark`, `last_active_time`, `create_time`, `update_time`) VALUES (1427192439998910464, 'test', 'test', '{MD5}53932d047839fc2b7ff55d6d963bd626', 1, 0, NULL, NULL, 1427105132612554752, NULL, 10, 0, 0, NULL, '2021-08-16 16:58:36', '2021-08-16 16:56:10', '2021-08-16 17:01:36');
 
-INSERT INTO t_permission (id, parent_id, parent_ids, parent_names, path_depth, order_num, name, scope, sn,
-                                        menu_path, menu_component, menu_icon, menu_meta, enable, type, remark,
-                                        create_time, update_time)
-VALUES (1, null, null, null, 0, 0, '系統管理', '""', 'system', '/acl', 'views/acl', 'el-icon-s-tools', 'a', 1, 1, null,
-        '2021-08-15 16:54:42', '2021-08-15 17:05:04');
-INSERT INTO t_permission (id, parent_id, parent_ids, parent_names, path_depth, order_num, name, scope, sn,
-                                        menu_path, menu_component, menu_icon, menu_meta, enable, type, remark,
-                                        create_time, update_time)
-VALUES (2, 1, '[1]', null, 0, 0, '用戶管理', null, null, 'user', 'views/acl/user/UserAccount', 'el-icon-user-solid', null,
-        1, 1, null, '2021-08-15 17:03:23', '2021-08-15 17:05:28');
-INSERT INTO t_permission (id, parent_id, parent_ids, parent_names, path_depth, order_num, name, scope, sn,
-                                        menu_path, menu_component, menu_icon, menu_meta, enable, type, remark,
-                                        create_time, update_time)
-VALUES (3, 1, '[1]', null, 0, 30, '权限管理', null, null, 'permission', 'views/acl/permission/Permission', 'el-icon-lock',
-        null, 1, 1, null, '2021-08-15 17:04:00', '2021-08-15 17:05:28');
-INSERT INTO t_permission (id, parent_id, parent_ids, parent_names, path_depth, order_num, name, scope, sn,
-                                        menu_path, menu_component, menu_icon, menu_meta, enable, type, remark,
-                                        create_time, update_time)
-VALUES (1426834263495544832, 1, null, null, 0, 10, '角色管理', null, null, 'role', 'views/acl/role/Role', 'el-icon-menu',
-        null, 1, 1, null, '2021-08-15 17:12:52', '2021-08-15 17:12:52');
+INSERT INTO `template_demo`.`t_config_system_config`(`id`, `config_key`, `value`, `default_value`, `label`, `type`, `system_config_group_id`, `create_time`, `update_time`, `remark`) VALUES (1, 'WEB_TITLE', '后台系统2222', '后台系统', '网站标题', 0, 1, '2021-08-17 11:18:29', '2021-08-17 15:17:47', '刷新网页生效');
+INSERT INTO `template_demo`.`t_config_system_config`(`id`, `config_key`, `value`, `default_value`, `label`, `type`, `system_config_group_id`, `create_time`, `update_time`, `remark`) VALUES (2, 'MESSAGE_WS_IP', '127.0.0.1', '127.0.0.1', 'WebsocketIP', 0, 2, '2021-08-18 09:42:15', NULL, '刷新网页生效');
+INSERT INTO `template_demo`.`t_config_system_config`(`id`, `config_key`, `value`, `default_value`, `label`, `type`, `system_config_group_id`, `create_time`, `update_time`, `remark`) VALUES (3, 'MESSAGE_WS_PORT', '9912', '9912', 'WebsocketPort', 0, 2, '2021-08-18 09:42:55', NULL, '刷新网页生效');
+INSERT INTO `template_demo`.`t_config_system_config`(`id`, `config_key`, `value`, `default_value`, `label`, `type`, `system_config_group_id`, `create_time`, `update_time`, `remark`) VALUES (4, 'MESSAGE_WS_PROTO', 'ws', 'ws', 'WebsocketProto', 0, 2, '2021-08-18 09:43:31', NULL, '刷新网页生效');
 
-INSERT INTO t_role (id, name, remark, create_time, update_time)
-VALUES (1, '超級管理員', null, '2021-08-15 16:50:40', '2021-08-15 16:50:40');
+INSERT INTO `template_demo`.`t_config_system_config_group`(`id`, `name`, `description`, `create_time`, `update_time`, `remark`) VALUES (1, '后台配置', '后台配置', '2021-08-17 11:17:36', '2021-08-17 11:17:49', NULL);
+INSERT INTO `template_demo`.`t_config_system_config_group`(`id`, `name`, `description`, `create_time`, `update_time`, `remark`) VALUES (2, '消息系统设置', '消息系统设置', '2021-08-18 09:39:58', NULL, NULL);
 
-INSERT INTO t_role_permission (id, role_id, permission_id, remark, create_time, update_time)
-VALUES (1, 1, 1, null, '2021-08-15 16:56:05', '2021-08-15 16:56:05');
-INSERT INTO t_role_permission (id, role_id, permission_id, remark, create_time, update_time)
-VALUES (2, 1, 2, null, '2021-08-15 17:04:19', '2021-08-15 17:04:19');
-INSERT INTO t_role_permission (id, role_id, permission_id, remark, create_time, update_time)
-VALUES (3, 1, 3, null, '2021-08-15 17:04:19', '2021-08-15 17:04:19');
-INSERT INTO t_role_permission (id, role_id, permission_id, remark, create_time, update_time)
-VALUES (4, 1, 1426834263495544832, null, '2021-08-15 17:46:30', '2021-08-15 17:46:30');
+INSERT INTO `template_demo`.`t_permission`(`id`, `parent_id`, `parent_ids`, `parent_names`, `path_depth`, `order_num`, `name`, `scope`, `sn`, `menu_path`, `menu_component`, `menu_icon`, `menu_meta`, `enable`, `type`, `remark`, `create_time`, `update_time`) VALUES (1, NULL, NULL, NULL, 0, 0, '系統管理', '\"\"', 'system', '/acl', 'views/acl', 'el-icon-s-tools', 'a', 1, 1, NULL, '2021-08-15 16:54:42', '2021-08-15 17:05:04');
+INSERT INTO `template_demo`.`t_permission`(`id`, `parent_id`, `parent_ids`, `parent_names`, `path_depth`, `order_num`, `name`, `scope`, `sn`, `menu_path`, `menu_component`, `menu_icon`, `menu_meta`, `enable`, `type`, `remark`, `create_time`, `update_time`) VALUES (2, 1427086597337255936, NULL, NULL, 0, 0, '用户管理', NULL, NULL, 'user', 'views/acl/user/UserAccount', 'el-icon-user-solid', NULL, 1, 1, NULL, '2021-08-15 17:03:23', '2021-08-16 09:56:37');
+INSERT INTO `template_demo`.`t_permission`(`id`, `parent_id`, `parent_ids`, `parent_names`, `path_depth`, `order_num`, `name`, `scope`, `sn`, `menu_path`, `menu_component`, `menu_icon`, `menu_meta`, `enable`, `type`, `remark`, `create_time`, `update_time`) VALUES (3, 1427086597337255936, NULL, NULL, 0, 30, '权限管理', NULL, NULL, 'permission', 'views/acl/permission/Permission', 'el-icon-lock', NULL, 1, 1, NULL, '2021-08-15 17:04:00', '2021-08-16 09:56:33');
+INSERT INTO `template_demo`.`t_permission`(`id`, `parent_id`, `parent_ids`, `parent_names`, `path_depth`, `order_num`, `name`, `scope`, `sn`, `menu_path`, `menu_component`, `menu_icon`, `menu_meta`, `enable`, `type`, `remark`, `create_time`, `update_time`) VALUES (1426834263495544832, 1427086597337255936, NULL, NULL, 0, 10, '角色管理', NULL, NULL, 'role', 'views/acl/role/Role', 'el-icon-menu', NULL, 1, 1, NULL, '2021-08-15 17:12:52', '2021-08-16 09:56:51');
+INSERT INTO `template_demo`.`t_permission`(`id`, `parent_id`, `parent_ids`, `parent_names`, `path_depth`, `order_num`, `name`, `scope`, `sn`, `menu_path`, `menu_component`, `menu_icon`, `menu_meta`, `enable`, `type`, `remark`, `create_time`, `update_time`) VALUES (1427086597337255936, 1, NULL, NULL, 0, 0, '访问控制管理', NULL, NULL, '/sys/acl', 'views/acl', 'el-icon-s-custom', NULL, 1, 1, NULL, '2021-08-16 09:55:35', '2021-08-16 09:55:35');
+INSERT INTO `template_demo`.`t_permission`(`id`, `parent_id`, `parent_ids`, `parent_names`, `path_depth`, `order_num`, `name`, `scope`, `sn`, `menu_path`, `menu_component`, `menu_icon`, `menu_meta`, `enable`, `type`, `remark`, `create_time`, `update_time`) VALUES (1427112202615263232, 1, NULL, NULL, 0, 10, '系统日志', NULL, NULL, '/system/log', 'views/log/SystemLog', 'el-icon-tickets', NULL, 1, 1, NULL, '2021-08-16 11:37:20', '2021-08-16 11:37:20');
+INSERT INTO `template_demo`.`t_permission`(`id`, `parent_id`, `parent_ids`, `parent_names`, `path_depth`, `order_num`, `name`, `scope`, `sn`, `menu_path`, `menu_component`, `menu_icon`, `menu_meta`, `enable`, `type`, `remark`, `create_time`, `update_time`) VALUES (1427473033278394368, 1, NULL, NULL, 0, 30, '系统参数配置', NULL, NULL, '/system/config', 'views/system-config/SystemConfig', 'el-icon-s-tools', NULL, 1, 1, NULL, '2021-08-17 11:31:09', '2021-08-17 11:31:09');
+
+INSERT INTO `template_demo`.`t_role`(`id`, `name`, `remark`, `create_time`, `update_time`) VALUES (1, '超级管理员', NULL, '2021-08-15 16:50:40', '2021-08-17 15:50:04');
+INSERT INTO `template_demo`.`t_role`(`id`, `name`, `remark`, `create_time`, `update_time`) VALUES (1427105132612554752, '普通用户', NULL, '2021-08-16 11:09:14', '2021-08-16 11:09:14');
+
+INSERT INTO `template_demo`.`t_role_permission`(`id`, `role_id`, `permission_id`, `remark`, `create_time`, `update_time`) VALUES (1, 1, 1, NULL, '2021-08-15 16:56:05', '2021-08-15 16:56:05');
+INSERT INTO `template_demo`.`t_role_permission`(`id`, `role_id`, `permission_id`, `remark`, `create_time`, `update_time`) VALUES (2, 1, 2, NULL, '2021-08-15 17:04:19', '2021-08-15 17:04:19');
+INSERT INTO `template_demo`.`t_role_permission`(`id`, `role_id`, `permission_id`, `remark`, `create_time`, `update_time`) VALUES (3, 1, 3, NULL, '2021-08-15 17:04:19', '2021-08-15 17:04:19');
+INSERT INTO `template_demo`.`t_role_permission`(`id`, `role_id`, `permission_id`, `remark`, `create_time`, `update_time`) VALUES (4, 1, 1426834263495544832, NULL, '2021-08-16 09:53:12', '2021-08-16 09:53:12');
+INSERT INTO `template_demo`.`t_role_permission`(`id`, `role_id`, `permission_id`, `remark`, `create_time`, `update_time`) VALUES (5, 1, 1427086597337255936, NULL, '2021-08-16 09:57:48', '2021-08-16 09:57:48');
+INSERT INTO `template_demo`.`t_role_permission`(`id`, `role_id`, `permission_id`, `remark`, `create_time`, `update_time`) VALUES (1427112244172427264, 1, 1427112202615263232, NULL, '2021-08-16 11:37:30', '2021-08-16 11:37:30');
+INSERT INTO `template_demo`.`t_role_permission`(`id`, `role_id`, `permission_id`, `remark`, `create_time`, `update_time`) VALUES (1427473159577276416, 1, 1427473033278394368, NULL, '2021-08-17 11:31:39', '2021-08-17 11:31:39');
+
