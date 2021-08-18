@@ -57,6 +57,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("org.pettyfox.framework.service.account.interfaces.facade")
                         .or(RequestHandlerSelectors.basePackage("org.pettyfox.framework.gateway.rest"))
                         .or(RequestHandlerSelectors.basePackage("org.pettyfox.framework.service.config.interfaces.facade"))
+                        .or(RequestHandlerSelectors.basePackage("org.pettyfox.framework.service.message.interfaces.facade"))
                 )
                 .paths(PathSelectors.any())
                 .build()

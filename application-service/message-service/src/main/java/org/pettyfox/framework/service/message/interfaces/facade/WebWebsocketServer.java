@@ -4,6 +4,9 @@ import com.google.common.util.concurrent.RateLimiter;
 import io.netty.handler.codec.http.HttpHeaders;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.pettyfox.framework.service.message.domain.biz.AuthorizeBiz;
+import org.pettyfox.framework.service.message.domain.biz.SessionManagerBiz;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.utils.netty.annotation.*;
 import org.utils.netty.enums.PortType;
@@ -33,7 +36,10 @@ public class WebWebsocketServer {
     private static final ConcurrentHashMap<String, Session> SESSION_POOL = new ConcurrentHashMap<>();
     private static final ConcurrentHashMap<String, ConcurrentLinkedQueue<String>> MSG_REG_POOL = new ConcurrentHashMap<>();
     private static RateLimiter rateLimiter = RateLimiter.create(0.2);
-    private volatile String delayMessage;
+    @Autowired
+    private AuthorizeBiz authorizeBiz;
+    @Autowired
+    private SessionManagerBiz sessionManagerBiz;
 
 
     /**
@@ -51,7 +57,14 @@ public class WebWebsocketServer {
             session.close();
             return;
         }
+
         //token 鉴权
+        if (!authorizeBiz.checkToken(token)) {
+            log.warn("new websocket connecting reject,token is reject.ip:{}", clientAddress);
+            session.close();
+            return;
+        }
+
 
         log.info("websocket oopen:{}", parameterMap.getParameterValues("wsSessionId").get(0));
 
