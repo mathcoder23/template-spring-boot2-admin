@@ -80,6 +80,15 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.pettyfox.framework</groupId>
+            <artifactId>dubbo-basic</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -105,20 +114,20 @@
                             <tasks>
 
                                 <!-- 你将要拷贝的位置 -->
-                                <copy todir="${docker.dir}"  overwrite="true" >
-                                    <fileset dir="${project.build.directory}" >
-                                        <include name="${project.build.finalName}.jar"  />
+                                <copy todir="${docker.dir}" overwrite="true">
+                                    <fileset dir="${project.build.directory}">
+                                        <include name="${project.build.finalName}.jar"/>
                                     </fileset>
                                 </copy>
                                 <move file="${docker.dir}/${project.build.finalName}.jar"
                                       tofile="${docker.dir}/app.jar"/>
-                                <copy todir="${docker.dir}"  overwrite="true" >
-                                    <fileset dir="${project.build.directory}/maven-archiver" >
+                                <copy todir="${docker.dir}" overwrite="true">
+                                    <fileset dir="${project.build.directory}/maven-archiver">
                                         <include name="pom.properties"/>
                                     </fileset>
                                 </copy>
-                                <copy todir="${docker.dir}"  overwrite="true" >
-                                    <fileset dir="${docker.dir}/../" >
+                                <copy todir="${docker.dir}" overwrite="true">
+                                    <fileset dir="${docker.dir}/../">
                                         <include name="Dockerfile"/>
                                     </fileset>
                                 </copy>

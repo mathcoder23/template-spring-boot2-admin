@@ -22,6 +22,7 @@
         <module>framework-basic</module>
         <module>application-basic</module>
         <module>application-service</module>
+        <module>application-basic/dubbo-basic</module>
     </modules>
     <dependencies>
         <!--        <dependency>-->

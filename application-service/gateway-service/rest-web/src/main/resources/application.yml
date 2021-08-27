@@ -39,6 +39,8 @@ spring:
           hikari:
             minIdle: 5
             maxPoolSize: 10
+  application:
+    name: gateway-service
 mybatis-plus:
   configuration:
     database-id: MYSQL
@@ -67,3 +69,8 @@ project:
   build:
     date: '@maven.build.timestamp@'
   version: '@project.version@'
+dubbo:
+  registry:
+    address: nacos://127.0.0.1:8848
+  application:
+    name: gateway-service
