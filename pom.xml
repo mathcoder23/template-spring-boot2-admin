@@ -19,8 +19,8 @@
         <sub.version>1.0.0</sub.version>
     </properties>
     <modules>
-        <module>rest-web</module>
         <module>framework-basic</module>
+        <module>application-basic</module>
         <module>application-service</module>
     </modules>
     <dependencies>

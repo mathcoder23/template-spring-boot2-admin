@@ -7,7 +7,6 @@
         <groupId>org.pettyfox.framework</groupId>
         <artifactId>spring-boot2-template</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
