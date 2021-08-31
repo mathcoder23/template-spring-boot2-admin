@@ -20,9 +20,9 @@
     </properties>
     <modules>
         <module>framework-basic</module>
-        <module>application-basic</module>
-        <module>application-sdk</module>
-        <module>application-service</module>
+        <module>application-basic/dubbo-basic</module>
+        <module>application-service/gateway-service</module>
+        <module>application-service/business-services</module>
     </modules>
     <dependencies>
         <!--        <dependency>-->
