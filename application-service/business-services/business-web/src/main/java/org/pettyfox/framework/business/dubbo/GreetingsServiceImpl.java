@@ -1,4 +1,4 @@
-package org.pettyfox.framework.gateway.dubbo;
+package org.pettyfox.framework.business.dubbo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;

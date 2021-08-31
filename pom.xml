@@ -23,6 +23,7 @@
         <module>application-basic</module>
         <module>application-service</module>
         <module>application-basic/dubbo-basic</module>
+        <module>application-service/business-services</module>
     </modules>
     <dependencies>
         <!--        <dependency>-->

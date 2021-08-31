@@ -66,6 +66,7 @@ public class OAuth2ServerConfig {
                     "/webjars/**",
                     "/resources/**",
                     "/doc.html",//swagger knife4j接口文档入口
+                    "/dubbo",//swagger knife4j接口文档入口
                     "/swagger-resources/**",
                     "/v2/api-docs")
                     .permitAll()

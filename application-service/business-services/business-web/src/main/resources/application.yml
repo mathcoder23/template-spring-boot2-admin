@@ -1,5 +1,5 @@
 server:
-  port: 9099
+  port: 10010
   tomcat:
     remote-ip-header: X-Real-IP
     protocol-header: X-Forwarded-Proto
@@ -40,7 +40,7 @@ spring:
             minIdle: 5
             maxPoolSize: 10
   application:
-    name: gateway-service
+    name: bussines-service
 mybatis-plus:
   configuration:
     database-id: MYSQL
@@ -71,12 +71,11 @@ project:
   version: '@project.version@'
 dubbo:
   scan:
-    base-packages: org.pettyfox.framework.gateway
+    base-packages: org.pettyfox.framework
   registry:
     address: nacos://127.0.0.1:8848
   application:
-    name: gateway-service
+    name: bussines-service
   protocol:
-    port: 25677
+    port: 25688
     host: 127.0.0.1
-
