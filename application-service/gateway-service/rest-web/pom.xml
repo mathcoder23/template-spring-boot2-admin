@@ -3,10 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.pettyfox.framework</groupId>
+        <groupId>org.pettyfox.examples</groupId>
         <artifactId>spring-boot2-template</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../</relativePath>
     </parent>
     <artifactId>rest-web</artifactId>
     <version>1.0.0</version>
@@ -63,26 +62,26 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.pettyfox.framework</groupId>
+            <groupId>org.pettyfox.examples</groupId>
             <artifactId>account-service</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.pettyfox.framework</groupId>
+            <groupId>org.pettyfox.examples</groupId>
             <artifactId>config-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.pettyfox.framework</groupId>
+            <groupId>org.pettyfox.examples</groupId>
             <artifactId>message-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.pettyfox.framework</groupId>
+            <groupId>org.pettyfox.examples</groupId>
             <artifactId>dubbo-basic</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>

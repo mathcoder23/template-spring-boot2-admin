@@ -71,7 +71,7 @@ project:
   version: '@project.version@'
 dubbo:
   scan:
-    base-packages: org.pettyfox.framework.gateway
+    base-packages: org.pettyfox.examples.gateway
   registry:
     address: nacos://127.0.0.1:8848
   application:
