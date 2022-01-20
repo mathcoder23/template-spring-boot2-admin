@@ -30,7 +30,6 @@ public class DictController {
         Map<String, List<DictData>> result = new HashMap<>(64);
         ClassUtil.scanPackageBySuper(basePackage, BaseEnum.class).forEach(r -> {
             List<DictData> dictDataList = new ArrayList<>();
-
             String name = r.getName().substring(r.getName().lastIndexOf(".") + 1).replace("$", "_");
             for (Object e : r.getEnumConstants()) {
                 if (e instanceof BaseEnum) {
